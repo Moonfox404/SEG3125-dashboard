@@ -2,6 +2,7 @@
 
 import { Dispatch, useEffect, useState } from "react";
 import { FieldOfStudy, getDisplayNameForField, getFieldOfStudies, getStudyLevels, getYears, StudyLevel } from "../data/DataMaps";
+import Logo from "./Logo";
 
 type GraphSettingsProps = {
   compareStudyLevel: StudyLevel;
@@ -41,8 +42,8 @@ const GraphSettings = ({
 
   return (
     <div className="bg-base-100 h-screen w-2xs sm:w-xs px-8">
-      <div className="h-[15vh]">
-        {/* title here */}
+      <div className="h-[15vh] flex justify-center">
+        <Logo />
       </div>
       <div>
         <label className="label whitespace-normal">
