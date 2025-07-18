@@ -1,8 +1,12 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faBriefcase, faCar, faChalkboardTeacher, faCircleNotch, faCode, faEllipsis, faHeartPulse, faHelmetSafety, faPaintBrush, faRocket, faScaleBalanced, faUsers, faWheatAwn } from "@fortawesome/free-solid-svg-icons";
+
 export type ValueByFieldEntry = {
   valueFemale: number | undefined,
   valueMale: number | undefined,
-  fieldOfStudy: string,
+  fieldOfStudy: FieldOfStudy,
   shortName: string,
+  icon: IconDefinition
 };
 
 export type ValueByYearEntry = {
@@ -13,7 +17,7 @@ export type ValueByYearEntry = {
 
 export type StudyLevel = "Career, technical or professional training diploma" | "Undergraduate degree" | "Master's degree" | "Doctoral degree";
 
-export type FieldOfStudy = "Total, field of study" 
+export type FieldOfStudy = "Total, field of study"
   | "Education"
   | "Visual and performing arts, and communications technologies"
   | "Humanities"
@@ -43,6 +47,22 @@ const ShortNames: Map<FieldOfStudy, string> = new Map([
   ["Other instructional programs", "Other"]
 ]);
 
+const Icons: Map<FieldOfStudy, IconDefinition> = new Map([
+  ["Total, field of study", faCircleNotch],
+  ["Education", faChalkboardTeacher],
+  ["Visual and performing arts, and communications technologies", faPaintBrush],
+  ["Humanities", faUsers],
+  ["Social and behavioural sciences and law", faScaleBalanced],
+  ["Business, management and public administration", faBriefcase],
+  ["Physical and life sciences and technologies", faRocket],
+  ["Mathematics, computer and information sciences", faCode],
+  ["Architecture, engineering, and related trades", faHelmetSafety],
+  ["Agriculture, natural resources and conservation", faWheatAwn],
+  ["Health and related fields", faHeartPulse],
+  ["Personal, protective and transportation services", faCar],
+  ["Other instructional programs", faEllipsis]
+])
+
 const parseFieldOfStudy: (fieldOfStudy: string) => FieldOfStudy = (fieldOfStudy) => {
   const postOpenBracket = fieldOfStudy.indexOf("[");
   return fieldOfStudy.slice(0, postOpenBracket > 0 ? postOpenBracket - 1 : fieldOfStudy.length) as FieldOfStudy;
@@ -59,6 +79,7 @@ const generateEntries = (filteredData: any[]) => {
         shortName: (ShortNames.get(parsedFieldOfStudy as FieldOfStudy) ?? ""),
         valueFemale: undefined,
         valueMale: undefined,
+        icon: (Icons.get(parsedFieldOfStudy as FieldOfStudy) ?? faCircleNotch)
       }]
     })
   );
@@ -80,6 +101,42 @@ const generateEntries = (filteredData: any[]) => {
   return [...resultMap.values()];
 };
 
+const compareFieldOfStudies = (a: FieldOfStudy, b: FieldOfStudy) => {
+  // sort total to beginning
+  if (a === "Total, field of study") {
+    return -1;
+  }
+  if (b === "Total, field of study") {
+    return 1;
+  }
+
+  // sort other to end
+  if (a === "Other instructional programs") {
+    return 1;
+  }
+  if (b === "Other instructional programs") {
+    return -1;
+  }
+
+  const aShortName = getDisplayNameForField(a);
+  const bShortName = getDisplayNameForField(b);
+
+  // lexographical
+  if (aShortName < bShortName) {
+    return -1;
+  }
+  if (aShortName > bShortName) {
+    return 1;
+  }
+  return 0;
+}
+
+const sortDataAlphabetical = (data: ValueByFieldEntry[]) => {
+  return data.sort((a, b) => {
+    return compareFieldOfStudies(a.fieldOfStudy, b.fieldOfStudy);
+  });
+}
+
 const getMedianIncomeByFieldOfStudy = (data: any[], studyLevel: StudyLevel, year: number) => {
   const filteredData = data
     .filter((value) => {
@@ -88,7 +145,7 @@ const getMedianIncomeByFieldOfStudy = (data: any[], studyLevel: StudyLevel, year
         && parseInt(value["REF_DATE"], 10) === year
     });
 
-  return generateEntries(filteredData);
+  return sortDataAlphabetical(generateEntries(filteredData));
 };
 
 const getNumberReportingByFieldOfStudy = (data: any[], studyLevel: StudyLevel, year: number) => {
@@ -100,7 +157,7 @@ const getNumberReportingByFieldOfStudy = (data: any[], studyLevel: StudyLevel, y
         && value["Field of study"] !== "Total, field of study"
     });
 
-  return generateEntries(filteredData);
+  return sortDataAlphabetical(generateEntries(filteredData));
 };
 
 const getMedianIncomeByYear = (data: any[], studyLevel: StudyLevel, field: FieldOfStudy) => {
@@ -145,7 +202,9 @@ const getYears = () => {
 
 const getFieldOfStudies = () => {
   // hard coding for now
-  return [...ShortNames.keys()];
+  return [...ShortNames.keys()].sort(
+    compareFieldOfStudies
+  );
 }
 
 const getDisplayNameForField: (fieldOfStudy: FieldOfStudy) => string = (fieldOfStudy) => {
@@ -156,12 +215,17 @@ const getStudyLevels: () => StudyLevel[] = () => {
   return ["Career, technical or professional training diploma", "Undergraduate degree", "Master's degree", "Doctoral degree"]
 }
 
-export { 
-  getMedianIncomeByFieldOfStudy, 
-  getNumberReportingByFieldOfStudy, 
+const getDisplayIconForField: (fieldOfStudy: FieldOfStudy) => IconDefinition = (fieldOfStudy) => {
+  return Icons.get(fieldOfStudy) ?? faCircleNotch;
+}
+
+export {
+  getMedianIncomeByFieldOfStudy,
+  getNumberReportingByFieldOfStudy,
   getMedianIncomeByYear,
   getYears,
   getFieldOfStudies,
   getStudyLevels,
-  getDisplayNameForField
+  getDisplayNameForField,
+  getDisplayIconForField
 };

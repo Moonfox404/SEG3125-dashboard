@@ -1,6 +1,7 @@
 import { FieldOfStudy, getMedianIncomeByFieldOfStudy, getMedianIncomeByYear, getNumberReportingByFieldOfStudy, StudyLevel } from "../data/DataMaps";
 import IncomeByStudyChart from "./IncomeByStudyChart";
 import IncomeByYearChart from "./IncomeByYearChart";
+import MainLegend from "./MainLegend";
 import NumbersByStudyChart from "./NumbersByStudyChart";
 
 type GraphsProps = {
@@ -20,6 +21,9 @@ const Graphs = ({
 }: GraphsProps) => {
   return (
     <div className="px-2 sm:p-15 grid grid-cols-1 sm:grid-cols-3">
+      <div className="col sm:col-span-3 p-2">
+        <MainLegend />
+      </div>
       <div className="col sm:col-span-2 p-2">
         <IncomeByStudyChart year={2018} data={getMedianIncomeByFieldOfStudy(data, studyLevelCompare, year)} />
       </div>
