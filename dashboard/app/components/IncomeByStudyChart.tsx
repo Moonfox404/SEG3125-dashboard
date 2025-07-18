@@ -9,9 +9,10 @@ import type { ValueByFieldEntry } from '../data/DataMaps';
 
 type BarChartProps = {
   data: ValueByFieldEntry[],
+  year: number
 };
 
-const IncomeByStudyChart = ({ data }: BarChartProps) => {
+const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
 
   const sortedData = [...data].sort((a, b) => {
     // sort total to beginning
@@ -44,8 +45,8 @@ const IncomeByStudyChart = ({ data }: BarChartProps) => {
     console.log(sortedData);
   });
 
-  return <div className="card bg-base-100 w-full h-[50vh] p-5">
-    <h2 className="text-3xl text-center w-full my-2">Median Income</h2>
+  return <div className="card bg-base-100 w-full h-[50vh] p-5 shadow-md">
+    <h2 className="text-2xl text-center w-full my-2">Median Income for {year}</h2>
     <ResponsiveContainer>
       <BarChart
         data={sortedData}
@@ -55,8 +56,8 @@ const IncomeByStudyChart = ({ data }: BarChartProps) => {
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" />
-        <Bar dataKey="valueMale" fill="#A4BEF3" name="Man" />
-        <Bar dataKey="valueFemale" fill="#a9284b" name="Woman" />
+        <Bar dataKey="valueMale" fill="#5D83D0" name="Man" />
+        <Bar dataKey="valueFemale" fill="#BA375A" name="Woman" />
       </BarChart>
     </ResponsiveContainer>
   </div>
