@@ -1,11 +1,16 @@
 "use client";
 
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { ValueByYearEntry } from "../data/DataMaps";
+import { FieldOfStudy, getDisplayNameForField, ValueByYearEntry } from "../data/DataMaps";
 
-const IncomeByYearChart = ({data}: {data: ValueByYearEntry[]}) => {
+type LineChartProps = {
+  data: ValueByYearEntry[];
+  fieldOfStudy: FieldOfStudy;
+}
+
+const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
   return <div className="card bg-base-100 w-full h-[35vh] p-5 shadow-md">
-    <h2 className="text-2xl text-center w-full">Median Income over Time</h2>
+    <h2 className="text-2xl text-center w-full">Median Income over Time ({getDisplayNameForField(fieldOfStudy)})</h2>
     <ResponsiveContainer>
       <LineChart
         data={data}

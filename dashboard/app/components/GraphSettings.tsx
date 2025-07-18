@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, useEffect } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import { FieldOfStudy, getDisplayNameForField, getFieldOfStudies, getStudyLevels, getYears, StudyLevel } from "../data/DataMaps";
 
 type GraphSettingsProps = {
@@ -27,9 +27,17 @@ const GraphSettings = ({
   const minYear = Math.min(...years);
   const maxYear = Math.max(...years);
 
+  const [sync, setSync] = useState(true);
+
   useEffect(() => {
     setYear(maxYear);
   }, [maxYear])
+
+  useEffect(() => {
+    if (sync) {
+      setTemporalStudyLevel(compareStudyLevel);
+    }
+  }, [sync]);
 
   return (
     <div className="bg-base-100 h-screen w-2xs sm:w-xs px-8">
@@ -37,9 +45,13 @@ const GraphSettings = ({
         {/* title here */}
       </div>
       <div>
+        <label className="label whitespace-normal">
+          <input type="checkbox" defaultChecked className="toggle toggle-neutral" onChange={(evt) => { setSync(evt.target.checked); }} />
+          Sync education level between graphs
+        </label>
         <div>
           {/* Comparison Settings */}
-          <h2 className="text-3xl mb-5">Compare</h2>
+          <h2 className="text-3xl mt-10 mb-5">Compare</h2>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
             <legend className="fieldset-legend">Field of Study Graph Options</legend>
 
@@ -49,9 +61,12 @@ const GraphSettings = ({
               onChange={
                 (evt) => {
                   setCompareStudyLevel(evt.target.value as StudyLevel);
+                  if (sync) {
+                    setTemporalStudyLevel(evt.target.value as StudyLevel);
+                  }
                 }
               }
-              defaultValue={compareStudyLevel}
+              value={compareStudyLevel}
             >
               {
                 studyLevels.map((studyLevel, idx) => {
@@ -88,9 +103,13 @@ const GraphSettings = ({
               onChange={
                 (evt) => {
                   setTemporalStudyLevel(evt.target.value as StudyLevel);
+
+                  if (sync) {
+                    setCompareStudyLevel(evt.target.value as StudyLevel);
+                  }
                 }
               }
-              defaultValue={temporalStudyLevel}
+              value={temporalStudyLevel}
             >
               {
                 studyLevels.map((studyLevel, idx) => {

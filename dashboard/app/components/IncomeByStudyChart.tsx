@@ -20,7 +20,7 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
   });
 
   return <div className="card bg-base-100 w-full h-[55vh] p-5 shadow-md">
-    <h2 className="text-2xl text-center w-full my-2">Median Income for {year}</h2>
+    <h2 className="text-2xl text-center w-full my-2">Median Income per Field ({year})</h2>
     <ResponsiveContainer>
       <BarChart
         data={data}

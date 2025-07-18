@@ -25,13 +25,13 @@ const Graphs = ({
         <MainLegend />
       </div>
       <div className="col sm:col-span-2 p-2">
-        <IncomeByStudyChart year={2018} data={getMedianIncomeByFieldOfStudy(data, studyLevelCompare, year)} />
+        <IncomeByStudyChart year={year} data={getMedianIncomeByFieldOfStudy(data, studyLevelCompare, year)} />
       </div>
       <div className="col p-2">
-        <NumbersByStudyChart data={getNumberReportingByFieldOfStudy(data, studyLevelCompare, year)} />
+        <NumbersByStudyChart year={year} data={getNumberReportingByFieldOfStudy(data, studyLevelCompare, year)} />
       </div>
       <div className="col sm:col-span-3 p-2">
-        <IncomeByYearChart data={getMedianIncomeByYear(data, studyLevelTemporal, fieldOfStudy)} />
+        <IncomeByYearChart fieldOfStudy={fieldOfStudy} data={getMedianIncomeByYear(data, studyLevelTemporal, fieldOfStudy)} />
       </div>
     </div>
   );
