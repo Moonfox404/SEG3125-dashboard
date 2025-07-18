@@ -42,12 +42,12 @@ const GraphSettings = ({
 
   return (
     <div className="bg-base-100 h-screen w-2xs sm:w-xs px-8">
-      <div className="h-[15vh] flex justify-center">
+      <div className="h-[15vh] flex items-center">
         <Logo />
       </div>
       <div>
         <label className="label whitespace-normal">
-          <input type="checkbox" defaultChecked className="toggle toggle-neutral" onChange={(evt) => { setSync(evt.target.checked); }} />
+          <input type="checkbox" defaultChecked className="toggle toggle-secondary" onChange={(evt) => { setSync(evt.target.checked); }} />
           Sync education level between graphs
         </label>
         <div>
@@ -58,7 +58,7 @@ const GraphSettings = ({
 
             <label className="label">Education Level</label>
             <select
-              className="select select-neutral"
+              className="select select-secondary"
               onChange={
                 (evt) => {
                   setCompareStudyLevel(evt.target.value as StudyLevel);
@@ -79,7 +79,7 @@ const GraphSettings = ({
             <label className="label">Data Collection Year</label>
             {/* number input with typing disabled */}
             <input
-              className="input input-neutral"
+              className="input input-secondary"
               type="number"
               step={1}
               min={minYear}
@@ -100,7 +100,7 @@ const GraphSettings = ({
 
             <label className="label">Education Level</label>
             <select
-              className="select select-neutral"
+              className="select select-secondary"
               onChange={
                 (evt) => {
                   setTemporalStudyLevel(evt.target.value as StudyLevel);
@@ -121,7 +121,7 @@ const GraphSettings = ({
 
             <label className="label">Field of Study</label>
             <select
-              className="select select-neutral"
+              className="select select-secondary"
               onChange={
                 (evt) => {
                   setFieldOfStudy(studyFields.at(evt.target.selectedIndex) ?? "Total, field of study");

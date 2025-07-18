@@ -20,7 +20,7 @@ const Graphs = ({
   fieldOfStudy,
 }: GraphsProps) => {
   return (
-    <div className="px-2 sm:p-15 grid grid-cols-1 sm:grid-cols-3">
+    <div className="px-2 sm:px-15 sm:py-5 grid grid-cols-1 sm:grid-cols-3">
       <div className="col sm:col-span-3 p-2">
         <MainLegend />
       </div>

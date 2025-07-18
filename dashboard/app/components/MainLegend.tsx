@@ -11,13 +11,13 @@ const MainLegend = () => {
           Array.from({ length: 2 }, (_, i) => i).map(
             (i) => {
               return (
-                <div className="row grid grid-cols-7 py-2">
+                <div key={i} className="row grid grid-cols-7 py-2">
                   {
                     fieldOfStudies
                       .slice(7 * i, 7 * (i + 1))
                       .map((fieldOfStudy, idx) => {
                         return (
-                          <div key={idx} className="col flex items-baseline px-2">
+                          <div key={String(i) + idx} className="col flex items-baseline px-2">
                             <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
                             <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
                           </div>
