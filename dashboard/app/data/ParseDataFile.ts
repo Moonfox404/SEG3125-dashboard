@@ -1,5 +1,4 @@
 import fs from "fs";
-import csv from "csv-parser";
 import neatCsv from "neat-csv";
 import stripBomStream from "strip-bom-stream";
 

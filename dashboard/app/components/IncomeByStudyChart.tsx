@@ -4,16 +4,17 @@
 import { useEffect } from 'react';
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import type { MedianIncomeByFieldEntry } from '../data/DataMaps';
+import type { ValueByFieldEntry } from '../data/DataMaps';
 
 
 type BarChartProps = {
-  data: MedianIncomeByFieldEntry[],
+  data: ValueByFieldEntry[],
 };
 
 const IncomeByStudyChart = ({ data }: BarChartProps) => {
 
   const sortedData = [...data].sort((a, b) => {
+    // sort total to beginning
     if (a.fieldOfStudy === "Total, field of study") {
       return -1;
     }
@@ -21,18 +22,19 @@ const IncomeByStudyChart = ({ data }: BarChartProps) => {
       return 1;
     }
 
+    // sort other to end
     if (a.fieldOfStudy === "Other instructional programs") {
       return 1;
     }
-
-    if (a.fieldOfStudy === "Other instructional programs") {
+    if (b.fieldOfStudy === "Other instructional programs") {
       return -1;
     }
 
-    if (a.fieldOfStudy < b.fieldOfStudy) {
+    // lexographical
+    if (a.shortName < b.shortName) {
       return -1;
     }
-    if (a.fieldOfStudy > b.fieldOfStudy) {
+    if (a.shortName > b.shortName) {
       return 1;
     }
     return 0;
@@ -42,65 +44,19 @@ const IncomeByStudyChart = ({ data }: BarChartProps) => {
     console.log(sortedData);
   });
 
-  // const options = {
-  //   responsive: true,
-  //   plugins: {
-  //     legend: {
-  //       position: 'top' as const,
-  //     },
-  //     title: {
-  //       display: true,
-  //       text: 'Median Income',
-  //     },
-  //   },
-  // };
-
-  // const chartData = {
-  //   labels: sortedData
-  //     .map((value) => value.fieldOfStudy)
-  //     .reduce((accumulator: string[], current) => {
-  //       if (!accumulator.includes(current)) {
-  //         accumulator.push(current);
-  //       }
-  //       return accumulator;
-  //     }, []),
-  //   datasets: [
-  //     {
-  //       label: "Female",
-  //       data: sortedData
-  //         .filter((value) => value.sex === "Woman")
-  //         .map(row => row.medianIncome),
-  //       backgroundColor: 'rgba(255, 99, 132, 0.5)'
-  //     },
-  //     {
-  //       label: "Male",
-  //       data: sortedData
-  //         .filter((value) => value.sex === "Man")
-  //         .map(row => row.medianIncome),
-  //       backgroundColor: 'rgba(53, 162, 235, 0.5)'
-  //     }
-  //   ]
-  // }
-
-  return <div className="card bg-base-100 w-full h-screen p-5">
-    <h2 className="text-4xl text-center w-full">Median Income</h2>
+  return <div className="card bg-base-100 w-full h-[50vh] p-5">
+    <h2 className="text-3xl text-center w-full my-2">Median Income</h2>
     <ResponsiveContainer>
       <BarChart
         data={sortedData}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="shortName" angle={-45} textAnchor='end' height={150} />
+        <XAxis dataKey="shortName" angle={-45} textAnchor='end' height={110} />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" />
-        <Bar dataKey="medianIncomeFemale" fill="pink" name="Woman" />
-        <Bar dataKey="medianIncomeMale" fill="blue" name="Man" />
+        <Bar dataKey="valueMale" fill="#A4BEF3" name="Man" />
+        <Bar dataKey="valueFemale" fill="#a9284b" name="Woman" />
       </BarChart>
     </ResponsiveContainer>
   </div>
