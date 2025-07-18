@@ -138,4 +138,30 @@ const getMedianIncomeByYear = (data: any[], studyLevel: StudyLevel, field: Field
   return [...resultMap.values()];
 };
 
-export { getMedianIncomeByFieldOfStudy, getNumberReportingByFieldOfStudy, getMedianIncomeByYear };
+const getYears = () => {
+  // hard coding for now
+  return [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+}
+
+const getFieldOfStudies = () => {
+  // hard coding for now
+  return [...ShortNames.keys()];
+}
+
+const getDisplayNameForField: (fieldOfStudy: FieldOfStudy) => string = (fieldOfStudy) => {
+  return ShortNames.get(fieldOfStudy) ?? "";
+}
+
+const getStudyLevels: () => StudyLevel[] = () => {
+  return ["Career, technical or professional training diploma", "Undergraduate degree", "Master's degree", "Doctoral degree"]
+}
+
+export { 
+  getMedianIncomeByFieldOfStudy, 
+  getNumberReportingByFieldOfStudy, 
+  getMedianIncomeByYear,
+  getYears,
+  getFieldOfStudies,
+  getStudyLevels,
+  getDisplayNameForField
+};
