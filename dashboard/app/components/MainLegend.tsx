@@ -6,28 +6,17 @@ const MainLegend = () => {
 
   return (
     <div className="card bg-base-100 w-full p-5 shadow-md flex justify-center">
-      <div className="grid grid-rows-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-7">
         {
-          Array.from({ length: 2 }, (_, i) => i).map(
-            (i) => {
+          fieldOfStudies
+            .map((fieldOfStudy, idx) => {
               return (
-                <div key={i} className="row grid grid-cols-7 py-2">
-                  {
-                    fieldOfStudies
-                      .slice(7 * i, 7 * (i + 1))
-                      .map((fieldOfStudy, idx) => {
-                        return (
-                          <div key={String(i) + idx} className="col flex items-baseline px-2">
-                            <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
-                            <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
-                          </div>
-                        );
-                      })
-                  }
+                <div key={idx} className="col flex items-center px-2">
+                  <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
+                  <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
                 </div>
-              )
-            }
-          )
+              );
+            })
         }
       </div>
     </div>

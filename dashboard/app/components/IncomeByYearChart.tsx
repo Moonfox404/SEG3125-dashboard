@@ -20,8 +20,8 @@ const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" />
-        <Line name="Man" type="monotone" dataKey="valueMale" stroke="#5D83D0" />
-        <Line name="Woman" type="monotone" dataKey="valueFemale" stroke="#BA375A" />
+        <Line name="Man" type="monotone" dataKey="valueMale" stroke="var(--color-graph-blue)" />
+        <Line name="Woman" type="monotone" dataKey="valueFemale" stroke="var(--color-graph-pink)" />
       </LineChart>
     </ResponsiveContainer>
   </div>

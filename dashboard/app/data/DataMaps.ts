@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faBriefcase, faCar, faChalkboardTeacher, faCircleNotch, faCode, faEllipsis, faHeartPulse, faHelmetSafety, faPaintBrush, faRocket, faScaleBalanced, faUsers, faWheatAwn } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase, faCar, faChalkboardTeacher, faCircleNotch, faCode, faEllipsis, faGraduationCap, faHeartPulse, faHelmetSafety, faPaintBrush, faRocket, faScaleBalanced, faUsers, faWheatAwn } from "@fortawesome/free-solid-svg-icons";
 
 export type ValueByFieldEntry = {
   valueFemale: number | undefined,
@@ -60,7 +60,7 @@ const Icons: Map<FieldOfStudy, IconDefinition> = new Map([
   ["Agriculture, natural resources and conservation", faWheatAwn],
   ["Health and related fields", faHeartPulse],
   ["Personal, protective and transportation services", faCar],
-  ["Other instructional programs", faEllipsis]
+  ["Other instructional programs", faGraduationCap]
 ])
 
 const parseFieldOfStudy: (fieldOfStudy: string) => FieldOfStudy = (fieldOfStudy) => {

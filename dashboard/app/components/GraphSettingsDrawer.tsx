@@ -33,7 +33,7 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
         }
       />
       <div className="drawer-content">
-        <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0">
+        <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0 rounded-none">
           <FontAwesomeIcon icon={sidebarOpen ? faChevronLeft : faChevronRight} />
         </label>
         <main>
