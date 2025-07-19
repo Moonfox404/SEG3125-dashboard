@@ -3,23 +3,30 @@
 import { faChevronLeft, faChevronRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { FieldOfStudy, StudyLevel } from "../data/DataMaps";
+import { FieldOfStudy, LangKey, StudyLevel } from "../data/DataMaps";
 import Graphs from "./Graphs";
 import GraphSettings from "./GraphSettings";
 import NavBar from "./NavBar";
 
+import "@/app/i18n";
+import { useTranslation } from "react-i18next";
+
 type GraphSettingsDrawerType = {
-  data: any[],
+  dataEN: any[],
+  dataFR: any[]
 };
 
-const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
+const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
+  const [t, i18n] = useTranslation();
+  const data = i18n.language === "en" ? dataEN : dataFR;
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // menu states
-  const [compareStudyLevel, setCompareStudyLevel] = useState<StudyLevel>("Undergraduate degree");
+  const [compareStudyLevel, setCompareStudyLevel] = useState<StudyLevel>(i18n.language === "en" ? "Grade de premier cycle" : "Undergraduate degree");
   const [temporalStudyLevel, setTemporalStudyLevel] = useState<StudyLevel>(compareStudyLevel);
   const [year, setYear] = useState(2018);
-  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>("Total, field of study");
+  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "en" ? "Total, field of study": "Total, domaine d'études");
 
   useEffect(() => {
     console.log(sidebarOpen);
@@ -62,15 +69,16 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
             fieldOfStudy={fieldOfStudy}
             studyLevelCompare={compareStudyLevel}
             studyLevelTemporal={temporalStudyLevel}
+            lang={i18n.language as LangKey}
           />
         </main>
         <footer className="text-center mb-5">
-          Data taken from <a
+          {t("footer-text")} <a
             className="link link-secondary"
             href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710027901"
             target="_blank"
           >
-            Statistics Canada Table
+            {t("footer-link-name")}
           </a>
         </footer>
       </div>
@@ -79,6 +87,7 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
         <GraphSettings
           compareStudyLevel={compareStudyLevel}
           temporalStudyLevel={temporalStudyLevel}
+          fieldOfStudy={fieldOfStudy}
           setYear={setYear}
           setCompareStudyLevel={setCompareStudyLevel}
           setFieldOfStudy={setFieldOfStudy}

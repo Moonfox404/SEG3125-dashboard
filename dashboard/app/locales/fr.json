@@ -1,0 +1,37 @@
+{
+  "translation": {
+    "site-name": "Explorer + Visualiser",
+
+    "sync-toggle": "Synchroniser le niveau d'éducation entre les graphiques",
+    "lng-select": "English",
+    "lng-select-short": "EN",
+    "compare-header": "Comparer",
+    "compare-opt-header": "Options du graphique de comparaison",
+    "edu-lvl-select-label": "Titre Scolaire",
+    "year-input-label": "Année de collecte des données",
+    "trend-header": "Tendances",
+    "trend-opt-header": "Options du graphique de données temporelles",
+    "study-select-label": "Domaine d'études",
+
+    "subject-all": "Tous",
+    "subject-edu": "Éducation",
+    "subject-art": "Art",
+    "subject-humanities": "Sciences humaines",
+    "subject-social": "Sciences sociales",
+    "subject-business": "Commerce",
+    "subject-science": "Sciences physiques",
+    "subject-cs": "Science informatiques",
+    "subject-engineering": "Génie",
+    "subject-nr": "Ressources Naturelles",
+    "subject-health": "Santé",
+    "subject-services": "Services",
+    "subject-other": "Autres",
+
+    "income-by-study-graph-title": "Revenu médian par domaine",
+    "income-by-year-graph-title": "Revenu médian au fil du temps",
+    "numbers-by-study-graph-title": "Nombre de rapports par domaine",
+
+    "footer-text": "Données tirées du",
+    "footer-link-name": "tableau de Statistique Canada"
+  }
+}

@@ -1,7 +1,8 @@
 "use client";
 
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { FieldOfStudy, getDisplayNameForField, ValueByYearEntry } from "../data/DataMaps";
+import { FieldOfStudy, getDisplayKeyForField, ValueByYearEntry } from "../data/DataMaps";
+import { useTranslation } from "react-i18next";
 
 type LineChartProps = {
   data: ValueByYearEntry[];
@@ -9,8 +10,10 @@ type LineChartProps = {
 }
 
 const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
+  const [t, i18n] = useTranslation();
+
   return <div className="card bg-base-100 w-full h-[35vh] p-5 shadow-md">
-    <h2 className="text-2xl text-center w-full">Median Income over Time ({getDisplayNameForField(fieldOfStudy)})</h2>
+    <h2 className="text-2xl text-center w-full">{t("income-by-year-graph-title")} ({t(getDisplayKeyForField(fieldOfStudy))})</h2>
     <ResponsiveContainer>
       <LineChart
         data={data}

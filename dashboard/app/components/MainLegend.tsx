@@ -1,33 +1,36 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FieldOfStudy, getDisplayIconForField, getDisplayNameForField, getFieldOfStudies } from "../data/DataMaps";
+import { FieldOfStudy, getDisplayIconForField, getDisplayKeyForField, getFieldOfStudies, LangKey } from "../data/DataMaps";
 import { Fragment, useState } from "react";
-
-const FieldWithDisable = ({
-  fieldOfStudy
-}: {
-  fieldOfStudy: FieldOfStudy
-}) => {
-  const [disabled, setDisabled] = useState(false);
-
-  return (
-    <label className="cursor-pointer col flex items-center">
-      <input
-        type="checkbox"
-        className="hidden"
-        onChange={(evt) => { setDisabled(evt.target.checked); }}
-      />
-      <div className={"flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
-        <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
-        <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
-      </div>
-    </label>
-  )
-}
+import { useTranslation } from "react-i18next";
 
 const MainLegend = () => {
-  const fieldOfStudies = getFieldOfStudies();
+  const [t, i18n] = useTranslation();
+
+  const fieldOfStudies = getFieldOfStudies(i18n.language as LangKey);
+
+  const FieldWithDisable = ({
+    fieldOfStudy
+  }: {
+    fieldOfStudy: FieldOfStudy
+  }) => {
+    const [disabled, setDisabled] = useState(false);
+
+    return (
+      <label className="cursor-pointer col flex items-center">
+        <input
+          type="checkbox"
+          className="hidden"
+          onChange={(evt) => { setDisabled(evt.target.checked); }}
+        />
+        <div className={"flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
+          <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
+          <p className="ml-3">{t(getDisplayKeyForField(fieldOfStudy))}</p>
+        </div>
+      </label>
+    )
+  }
 
   return (
     <div className="card bg-base-100 w-full p-5 shadow-md flex justify-center">

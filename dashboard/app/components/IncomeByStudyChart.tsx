@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { ValueByFieldEntry } from '../data/DataMaps';
 import IconAxisTick from './IconAxisTick';
+import { useTranslation } from 'react-i18next';
 
 
 type BarChartProps = {
@@ -15,6 +16,7 @@ type BarChartProps = {
 const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
 
   const [vertical, setVertical] = useState(false);
+  const [t, i18n] = useTranslation();
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1200px)");
@@ -27,7 +29,7 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
   })
 
   return <div className="card bg-base-100 w-full h-[55vh] p-5 shadow-md">
-    <h2 className="text-2xl text-center w-full my-2">Median Income per Field ({year})</h2>
+    <h2 className="text-2xl text-center w-full my-2">{t("income-by-study-graph-title")} ({year})</h2>
     <ResponsiveContainer>
       <BarChart
         layout={vertical ? "vertical" : "horizontal"}

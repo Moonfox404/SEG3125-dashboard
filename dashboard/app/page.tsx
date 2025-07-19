@@ -1,10 +1,11 @@
-import loadData from "./data/ParseDataFile";
 import GraphSettingsDrawer from "./components/GraphSettingsDrawer";
+import { loadDataEN, loadDataFR } from "./data/ParseDataFile";
 
 export default async function Home() {
-  const data = await loadData();
+  const dataEN = await loadDataEN();
+  const dataFR = await loadDataFR();
 
   return (
-    <GraphSettingsDrawer data={data} />
+    <GraphSettingsDrawer dataEN={dataEN} dataFR={dataFR} />
   );
 }
