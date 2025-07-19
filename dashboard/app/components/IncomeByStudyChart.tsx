@@ -17,10 +17,6 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
   const [vertical, setVertical] = useState(false);
 
   useEffect(() => {
-    console.log(data);
-  });
-
-  useEffect(() => {
     const mq = window.matchMedia("(max-width: 1200px)");
 
     setVertical(mq.matches);

@@ -2,7 +2,7 @@
 
 import { faChevronLeft, faChevronRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldOfStudy, StudyLevel } from "../data/DataMaps";
 import Graphs from "./Graphs";
 import GraphSettings from "./GraphSettings";
@@ -21,12 +21,17 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
   const [year, setYear] = useState(2018);
   const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>("Total, field of study");
 
+  useEffect(() => {
+    console.log(sidebarOpen);
+  }, [sidebarOpen]);
+
   return (
     <div className={"drawer" + (sidebarOpen ? " lg:drawer-open" : "")}>
       <input
         id="graphSettingsDrawer"
         type="checkbox"
         className="drawer-toggle"
+        checked={sidebarOpen}
         onChange={
           (evt) => {
             setSidebarOpen(evt.target.checked);
@@ -59,13 +64,13 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
             studyLevelTemporal={temporalStudyLevel}
           />
         </main>
-        <footer className="text-center">
+        <footer className="text-center mb-5">
           Data taken from <a
             className="link link-secondary"
             href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710027901"
             target="_blank"
           >
-            Statistics Canada Survey
+            Statistics Canada Table
           </a>
         </footer>
       </div>

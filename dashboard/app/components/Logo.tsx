@@ -10,7 +10,7 @@ const Logo = ({size}: LogoProps) => {
     <a className="size-fit" href="/">
       <div className={"flex items-center space-x-2 text-secondary " + (size && size === "sm" ? "text-3xl" : "text-5xl")}>
         <FontAwesomeIcon icon={faVenusMars} />
-        <span className={size && size === "sm" ? "text-2xl" : "text-3xl"}>
+        <span className={size && size === "sm" ? "text-xl" : "text-3xl"}>
           Explore + Visualise
         </span>
       </div>
