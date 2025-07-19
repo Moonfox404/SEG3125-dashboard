@@ -1,11 +1,12 @@
 "use client";
 
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { FieldOfStudy, StudyLevel } from "../data/DataMaps";
 import Graphs from "./Graphs";
 import GraphSettings from "./GraphSettings";
+import NavBar from "./NavBar";
 
 type GraphSettingsDrawerType = {
   data: any[],
@@ -33,9 +34,22 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
         }
       />
       <div className="drawer-content">
-        <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0 rounded-none">
-          <FontAwesomeIcon icon={sidebarOpen ? faChevronLeft : faChevronRight} />
-        </label>
+        {
+          sidebarOpen &&
+          <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0 rounded-none">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </label>
+        }
+        <nav>
+          <NavBar showLogo={!sidebarOpen}>
+            {
+              !sidebarOpen &&
+              <label htmlFor="graphSettingsDrawer" className="btn btn-ghost btn-lg drawer-button text-neutral">
+                <FontAwesomeIcon icon={faSliders} />
+              </label>
+            }
+          </NavBar>
+        </nav>
         <main>
           <Graphs
             data={data}
@@ -46,8 +60,8 @@ const GraphSettingsDrawer = ({ data }: GraphSettingsDrawerType) => {
           />
         </main>
         <footer className="text-center">
-          Data taken from <a 
-            className="link link-secondary" 
+          Data taken from <a
+            className="link link-secondary"
             href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710027901"
             target="_blank"
           >

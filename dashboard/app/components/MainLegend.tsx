@@ -12,13 +12,13 @@ const FieldWithDisable = ({
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <label className="cursor-pointer">
+    <label className="cursor-pointer col flex items-center">
       <input
         type="checkbox"
         className="hidden"
         onChange={(evt) => { setDisabled(evt.target.checked); }}
       />
-      <div className={"col flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
+      <div className={"flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
         <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
         <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
       </div>
