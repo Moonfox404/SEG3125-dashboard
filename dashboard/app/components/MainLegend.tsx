@@ -1,5 +1,30 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getDisplayIconForField, getDisplayNameForField, getFieldOfStudies } from "../data/DataMaps";
+import { FieldOfStudy, getDisplayIconForField, getDisplayNameForField, getFieldOfStudies } from "../data/DataMaps";
+import { Fragment, useState } from "react";
+
+const FieldWithDisable = ({
+  fieldOfStudy
+}: {
+  fieldOfStudy: FieldOfStudy
+}) => {
+  const [disabled, setDisabled] = useState(false);
+
+  return (
+    <label className="cursor-pointer">
+      <input
+        type="checkbox"
+        className="hidden"
+        onChange={(evt) => { setDisabled(evt.target.checked); }}
+      />
+      <div className={"col flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
+        <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
+        <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
+      </div>
+    </label>
+  )
+}
 
 const MainLegend = () => {
   const fieldOfStudies = getFieldOfStudies();
@@ -11,10 +36,9 @@ const MainLegend = () => {
           fieldOfStudies
             .map((fieldOfStudy, idx) => {
               return (
-                <div key={idx} className="col flex items-center px-2">
-                  <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
-                  <p className="ml-3">{getDisplayNameForField(fieldOfStudy)}</p>
-                </div>
+                <Fragment key={idx}>
+                  <FieldWithDisable fieldOfStudy={fieldOfStudy} />
+                </Fragment>
               );
             })
         }
