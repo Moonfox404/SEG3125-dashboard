@@ -32,6 +32,9 @@
     "numbers-by-study-graph-title": "Number Reporting per Field",
 
     "footer-text": "Data taken from",
-    "footer-link-name": "Statistics Canada Table"
+    "footer-link-name": "Statistics Canada Table",
+
+    "legend-man": "Men",
+    "legend-woman": "Women"
   }
 }

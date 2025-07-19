@@ -32,6 +32,9 @@
     "numbers-by-study-graph-title": "Nombre de rapports par domaine",
 
     "footer-text": "Données tirées du",
-    "footer-link-name": "tableau de Statistique Canada"
+    "footer-link-name": "tableau de Statistique Canada",
+
+    "legend-man": "Hommes",
+    "legend-woman": "Femmes"
   }
 }

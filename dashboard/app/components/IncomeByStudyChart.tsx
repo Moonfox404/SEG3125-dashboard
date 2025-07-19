@@ -51,8 +51,8 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
         />
         <Tooltip />
         <Legend verticalAlign="top" />
-        <Bar dataKey="valueMale" fill="var(--color-graph-blue)" name="Man" />
-        <Bar dataKey="valueFemale" fill="var(--color-graph-pink)" name="Woman" />
+        <Bar dataKey="valueMale" fill="var(--color-graph-blue)" name={t("legend-man")} />
+        <Bar dataKey="valueFemale" fill="var(--color-graph-pink)" name={t("legend-woman")} />
       </BarChart>
     </ResponsiveContainer>
   </div>

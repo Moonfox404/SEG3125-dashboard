@@ -26,7 +26,7 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
   const [compareStudyLevel, setCompareStudyLevel] = useState<StudyLevel>(i18n.language === "en" ? "Grade de premier cycle" : "Undergraduate degree");
   const [temporalStudyLevel, setTemporalStudyLevel] = useState<StudyLevel>(compareStudyLevel);
   const [year, setYear] = useState(2018);
-  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "en" ? "Total, field of study": "Total, domaine d'études");
+  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "en" ? "Total, domaine d'études" : "Total, field of study");
 
   useEffect(() => {
     console.log(sidebarOpen);

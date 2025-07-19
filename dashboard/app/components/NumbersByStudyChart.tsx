@@ -22,8 +22,8 @@ const NumbersByStudyChart = ({ data, year }: RadarChartProps) => {
           <PolarGrid />
           <PolarAngleAxis dataKey="fieldOfStudy" tick={IconAxisTick} />
           <Tooltip />
-          <Radar name="Woman" dataKey="valueFemale" stroke="var(--color-graph-pink)" fill="var(--color-graph-pink)" fillOpacity={0.5} />
-          <Radar name="Man" dataKey="valueMale" stroke="var(--color-graph-blue)" fill="var(--color-graph-blue)" fillOpacity={0.5} />
+          <Radar name={t("legend-woman")} dataKey="valueFemale" stroke="var(--color-graph-pink)" fill="var(--color-graph-pink)" fillOpacity={0.5} />
+          <Radar name={t("legend-man")} dataKey="valueMale" stroke="var(--color-graph-blue)" fill="var(--color-graph-blue)" fillOpacity={0.5} />
         </RadarChart>
       </ResponsiveContainer>
     </div>

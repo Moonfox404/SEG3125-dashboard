@@ -48,7 +48,7 @@ export type FieldOfStudy = "Total, field of study"
   | "Architecture, génie et métiers connexes"
   | "Agriculture, ressources naturelles et conservation"
   | "Santé et domaines connexes"
-  | "Services personnels, de protection et de transprt"
+  | "Services personnels, de protection et de transport"
   | "Autres programmes d’enseignement";
 
 export type LangKey = "en" | "fr";
@@ -130,7 +130,7 @@ const FrenchToEnglish: Map<FieldOfStudy, FieldOfStudy> = new Map([
   ["Architecture, génie et métiers connexes", "Architecture, engineering, and related trades"],
   ["Agriculture, ressources naturelles et conservation", "Agriculture, natural resources and conservation"],
   ["Santé et domaines connexes", "Health and related fields"],
-  ["Services personnels, de protection et de transprt", "Personal, protective and transportation services"],
+  ["Services personnels, de protection et de transport", "Personal, protective and transportation services"],
   ["Autres programmes d’enseignement", "Other instructional programs"]
 ]);
 
@@ -283,8 +283,13 @@ const getNumberReportingByFieldOfStudy = (data: any[], studyLevel: StudyLevel, y
 };
 
 const getMedianIncomeByYear = (data: any[], studyLevel: StudyLevel, field: FieldOfStudy, lang: LangKey) => {
+
   const filteredData = data
     .filter((value) => {
+      if (value[DATA_TYPE_KEY[lang]] === INCOME_KEY[lang]
+        && value[STUDY_LEVEL_KEY[lang]] === studyLevel) {
+          console.log(parseFieldOfStudy(value[SUBJECT_KEY[lang]]));
+        }
       return value[DATA_TYPE_KEY[lang]] === INCOME_KEY[lang]
         && value[STUDY_LEVEL_KEY[lang]] === studyLevel
         && parseFieldOfStudy(value[SUBJECT_KEY[lang]]) === field
