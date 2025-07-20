@@ -60,6 +60,9 @@ const GraphSettings = ({
       <div className="h-[15vh] flex items-center">
         <Logo />
       </div>
+      <p className="mb-10">
+        {t("site-description")}
+      </p>
       <div>
         <label className="label whitespace-normal">
           <input type="checkbox" defaultChecked className="toggle toggle-secondary" onChange={(evt) => { setSync(evt.target.checked); }} />

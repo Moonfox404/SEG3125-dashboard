@@ -1,6 +1,7 @@
 {
   "translation": {
     "site-name": "Explorer + Visualiser",
+    "site-description": "Données sur l’emploi des diplômés postsecondaires cinq ans après l'obtention du titre scolaire.",
 
     "sync-toggle": "Synchroniser le niveau d'éducation entre les graphiques",
     "lng-select": "English",

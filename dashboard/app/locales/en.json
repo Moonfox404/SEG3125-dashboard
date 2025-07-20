@@ -1,6 +1,7 @@
 {
   "translation": {
     "site-name": "Explore + Visualise",
+    "site-description": "Employment data of post-secondary graduates 5 years after graduation.",
 
     "sync-toggle": "Sync education level between graphs",
     "lng-select": "Français",
