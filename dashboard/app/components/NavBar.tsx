@@ -3,7 +3,6 @@
 import { PropsWithChildren } from "react";
 import Logo from "./Logo";
 
-import "@/app/i18n"
 import { useTranslation } from "react-i18next";
 
 type NavBarProps = PropsWithChildren<{

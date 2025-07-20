@@ -1,11 +1,16 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FieldOfStudy, getDisplayIconForField, getDisplayKeyForField, getFieldOfStudies, LangKey } from "../data/DataMaps";
-import { Fragment, useState } from "react";
+import { FieldOfStudy, getDisplayIconForField, getDisplayKeyForField, getFieldOfStudies, LangKey, translateFieldOfStudy } from "../data/DataMaps";
+import { Dispatch, Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const MainLegend = () => {
+type LegendProps = {
+  disabledList: Set<FieldOfStudy>
+  setDisabledList: Dispatch<Set<FieldOfStudy>>
+};
+
+const MainLegend = ({ disabledList, setDisabledList }: LegendProps) => {
   const [t, i18n] = useTranslation();
 
   const fieldOfStudies = getFieldOfStudies(i18n.language as LangKey);
@@ -15,16 +20,24 @@ const MainLegend = () => {
   }: {
     fieldOfStudy: FieldOfStudy
   }) => {
-    const [disabled, setDisabled] = useState(false);
-
     return (
       <label className="cursor-pointer col flex items-center">
         <input
           type="checkbox"
           className="hidden"
-          onChange={(evt) => { setDisabled(evt.target.checked); }}
+          onChange={(evt) => {
+            if (evt.target.checked) {
+              disabledList.add(fieldOfStudy);
+              disabledList.add(translateFieldOfStudy(fieldOfStudy) as FieldOfStudy);
+            } else {
+              disabledList.delete(fieldOfStudy);
+              disabledList.delete(translateFieldOfStudy(fieldOfStudy) as FieldOfStudy);
+            }
+            setDisabledList(new Set(disabledList));
+          }}
+          checked={disabledList.has(fieldOfStudy)}
         />
-        <div className={"flex items-center px-2" + (disabled ? " text-neutral/50 line-through" : "")}>
+        <div className={"flex items-center px-2" + (disabledList.has(fieldOfStudy) ? " text-neutral/50 line-through" : "")}>
           <FontAwesomeIcon icon={getDisplayIconForField(fieldOfStudy)} />
           <p className="ml-3">{t(getDisplayKeyForField(fieldOfStudy))}</p>
         </div>

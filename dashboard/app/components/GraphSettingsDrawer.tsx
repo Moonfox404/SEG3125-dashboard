@@ -2,7 +2,7 @@
 
 import { faChevronLeft, faChevronRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FieldOfStudy, LangKey, StudyLevel } from "../data/DataMaps";
 import Graphs from "./Graphs";
 import GraphSettings from "./GraphSettings";
@@ -27,10 +27,6 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
   const [temporalStudyLevel, setTemporalStudyLevel] = useState<StudyLevel>(compareStudyLevel);
   const [year, setYear] = useState(2018);
   const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "en" ? "Total, domaine d'études" : "Total, field of study");
-
-  useEffect(() => {
-    console.log(sidebarOpen);
-  }, [sidebarOpen]);
 
   return (
     <div className={"drawer" + (sidebarOpen ? " lg:drawer-open" : "")}>

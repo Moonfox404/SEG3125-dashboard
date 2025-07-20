@@ -5,7 +5,6 @@ import { FieldOfStudy, getDisplayKeyForField, getFieldOfStudies, getStudyLevels,
 import Logo from "./Logo";
 import { useTranslation } from "react-i18next";
 
-import "../i18n"
 
 type GraphSettingsProps = {
   compareStudyLevel: StudyLevel;

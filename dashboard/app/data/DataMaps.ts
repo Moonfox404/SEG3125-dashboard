@@ -286,10 +286,6 @@ const getMedianIncomeByYear = (data: any[], studyLevel: StudyLevel, field: Field
 
   const filteredData = data
     .filter((value) => {
-      if (value[DATA_TYPE_KEY[lang]] === INCOME_KEY[lang]
-        && value[STUDY_LEVEL_KEY[lang]] === studyLevel) {
-          console.log(parseFieldOfStudy(value[SUBJECT_KEY[lang]]));
-        }
       return value[DATA_TYPE_KEY[lang]] === INCOME_KEY[lang]
         && value[STUDY_LEVEL_KEY[lang]] === studyLevel
         && parseFieldOfStudy(value[SUBJECT_KEY[lang]]) === field
