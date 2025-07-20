@@ -1,0 +1,44 @@
+{
+  "translation": {
+    "site-name": "Explore + Visualise",
+
+    "sync-toggle": "Sync education level between graphs",
+    "lng-select": "Français",
+    "lng-select-short": "FR",
+    "compare-header": "Compare",
+    "compare-opt-header": "Field of Study Graph Options",
+    "edu-lvl-select-label": "Education Level",
+    "year-input-label": "Data Collection Year",
+    "trend-header": "Trends",
+    "trend-opt-header": "Temporal Data Graph Options",
+    "study-select-label": "Field of Study",
+
+    "subject-all": "All",
+    "subject-edu": "Education",
+    "subject-art": "Art",
+    "subject-humanities": "Humanities",
+    "subject-social": "Social Science",
+    "subject-business": "Business",
+    "subject-science": "Physical Science",
+    "subject-cs": "Computer Science",
+    "subject-engineering": "Engineering",
+    "subject-nr": "Natural Resources",
+    "subject-health": "Health",
+    "subject-services": "Services",
+    "subject-other": "Other",
+
+    "income-by-study-graph-title": "Median Income per Field",
+    "income-by-year-graph-title": "Median Income over Time",
+    "numbers-by-study-graph-title": "Number Reporting per Field",
+    "study-axis-label": "Field of Study",
+    "income-axis-label": "Income (CAD)*",
+    "year-axis-label": "Year",
+
+    "footer-text": "Data taken from",
+    "footer-link-name": "Statistics Canada Table",
+    "footnote": "All currency has been adjusted to 2023 constant dollars",
+
+    "legend-man": "Men",
+    "legend-woman": "Women"
+  }
+}

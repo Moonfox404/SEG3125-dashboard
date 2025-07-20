@@ -1,12 +1,15 @@
 "use client";
 
 import { Dispatch, useEffect, useState } from "react";
-import { FieldOfStudy, getDisplayNameForField, getFieldOfStudies, getStudyLevels, getYears, StudyLevel } from "../data/DataMaps";
+import { FieldOfStudy, getDisplayKeyForField, getFieldOfStudies, getStudyLevels, getYears, LangKey, StudyLevel, translateFieldOfStudy, translateStudyLevel } from "../data/DataMaps";
 import Logo from "./Logo";
+import { useTranslation } from "react-i18next";
+
 
 type GraphSettingsProps = {
   compareStudyLevel: StudyLevel;
   temporalStudyLevel: StudyLevel;
+  fieldOfStudy: FieldOfStudy;
   setCompareStudyLevel: Dispatch<StudyLevel>;
   setTemporalStudyLevel: Dispatch<StudyLevel>;
   setYear: Dispatch<number>;
@@ -16,14 +19,17 @@ type GraphSettingsProps = {
 const GraphSettings = ({
   compareStudyLevel,
   temporalStudyLevel,
+  fieldOfStudy,
   setCompareStudyLevel,
   setTemporalStudyLevel,
   setYear,
   setFieldOfStudy,
 }: GraphSettingsProps) => {
+  const [t, i18n] = useTranslation();
+
   const years = getYears();
-  const studyFields = getFieldOfStudies();
-  const studyLevels = getStudyLevels();
+  const studyFields = getFieldOfStudies(i18n.language as LangKey);
+  const studyLevels = getStudyLevels(i18n.language as LangKey);
 
   const minYear = Math.min(...years);
   const maxYear = Math.max(...years);
@@ -40,6 +46,12 @@ const GraphSettings = ({
     }
   }, [sync]);
 
+  useEffect(() => {
+    setCompareStudyLevel(translateStudyLevel(compareStudyLevel) as StudyLevel);
+    setTemporalStudyLevel(translateStudyLevel(temporalStudyLevel) as StudyLevel);
+    setFieldOfStudy(translateFieldOfStudy(fieldOfStudy) as FieldOfStudy);
+  }, [i18n.language])
+
   return (
     <div className="bg-base-100 h-screen w-2xs sm:w-xs px-8">
       <div className="h-[15vh] flex items-center">
@@ -48,16 +60,17 @@ const GraphSettings = ({
       <div>
         <label className="label whitespace-normal">
           <input type="checkbox" defaultChecked className="toggle toggle-secondary" onChange={(evt) => { setSync(evt.target.checked); }} />
-          Sync education level between graphs
+          {t("sync-toggle")}
         </label>
         <div>
           {/* Comparison Settings */}
-          <h2 className="text-3xl mt-10 mb-5">Compare</h2>
+          <h2 className="text-3xl mt-10 mb-5">{t("compare-header")}</h2>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <legend className="fieldset-legend">Field of Study Graph Options</legend>
+            <legend className="fieldset-legend">{t("compare-opt-header")}</legend>
 
-            <label className="label">Education Level</label>
+            <label className="label">{t("edu-lvl-select-label")}</label>
             <select
+              id="compare-edu-lvl-select"
               className="select select-secondary"
               onChange={
                 (evt) => {
@@ -76,7 +89,7 @@ const GraphSettings = ({
               }
             </select>
 
-            <label className="label">Data Collection Year</label>
+            <label className="label">{t("year-input-label")}</label>
             {/* number input with typing disabled */}
             <input
               className="input input-secondary"
@@ -93,13 +106,14 @@ const GraphSettings = ({
         </div>
         <div>
           {/* Trends Settings */}
-          <h2 className="text-3xl mt-10 mb-5">Trends</h2>
+          <h2 className="text-3xl mt-10 mb-5">{t("trend-header")}</h2>
 
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <legend className="fieldset-legend">Temporal Data Graph Options</legend>
+            <legend className="fieldset-legend">{t("trend-opt-header")}</legend>
 
-            <label className="label">Education Level</label>
+            <label className="label">{t("edu-lvl-select-label")}</label>
             <select
+              id="temporal-edu-lvl-select"
               className="select select-secondary"
               onChange={
                 (evt) => {
@@ -119,7 +133,7 @@ const GraphSettings = ({
               }
             </select>
 
-            <label className="label">Field of Study</label>
+            <label className="label">{t("study-select-label")}</label>
             <select
               className="select select-secondary"
               onChange={
@@ -130,7 +144,7 @@ const GraphSettings = ({
             >
               {
                 studyFields.map((fieldOfStudy, idx) => {
-                  return <option key={idx}>{getDisplayNameForField(fieldOfStudy)}</option>
+                  return <option key={idx}>{t(getDisplayKeyForField(fieldOfStudy))}</option>
                 })
               }
             </select>
