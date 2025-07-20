@@ -30,9 +30,13 @@
     "income-by-study-graph-title": "Median Income per Field",
     "income-by-year-graph-title": "Median Income over Time",
     "numbers-by-study-graph-title": "Number Reporting per Field",
+    "study-axis-label": "Field of Study",
+    "income-axis-label": "Income (CAD)*",
+    "year-axis-label": "Year",
 
     "footer-text": "Data taken from",
     "footer-link-name": "Statistics Canada Table",
+    "footnote": "All currency has been adjusted to 2023 constant dollars",
 
     "legend-man": "Men",
     "legend-woman": "Women"

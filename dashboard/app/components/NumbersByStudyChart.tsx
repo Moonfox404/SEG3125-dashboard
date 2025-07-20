@@ -1,6 +1,6 @@
 "use client";
 
-import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Label, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 import { ValueByFieldEntry } from "../data/DataMaps";
 import IconAxisTick from "./IconAxisTick";
 import { useTranslation } from "react-i18next";

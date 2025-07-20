@@ -30,9 +30,13 @@
     "income-by-study-graph-title": "Revenu médian par domaine",
     "income-by-year-graph-title": "Revenu médian au fil du temps",
     "numbers-by-study-graph-title": "Nombre de rapports par domaine",
+    "study-axis-label": "Domaine d'études",
+    "income-axis-label": "Revenue (CAD)*",
+    "year-axis-label": "Année",
 
     "footer-text": "Données tirées du",
     "footer-link-name": "tableau de Statistique Canada",
+    "footnote": "Toutes les devises ont été ajustées en dollars constants de 2023",
 
     "legend-man": "Hommes",
     "legend-woman": "Femmes"

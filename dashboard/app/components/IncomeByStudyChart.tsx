@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { ValueByFieldEntry } from '../data/DataMaps';
 import IconAxisTick from './IconAxisTick';
 import { useTranslation } from 'react-i18next';
@@ -41,14 +41,20 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
           tick={vertical ? undefined : IconAxisTick}
           type={vertical ? "number" : "category"}
           interval={vertical ? "preserveStart" : 0}
-        />
+          height={50}
+        >
+          <Label value={t(t(vertical ? "income-axis-label" : "study-axis-label"))} position="insideBottom" />
+        </XAxis>
         <YAxis
           dataKey={vertical ? "fieldOfStudy" : undefined}
           tick={vertical ? IconAxisTick : undefined}
           type={vertical ? "category" : "number"}
           interval={vertical ? 0 : "preserveStart"}
           tickMargin={vertical ? 20 : undefined}
-        />
+          width={85}
+        >
+          <Label value={t(vertical ? "study-axis-label" : "income-axis-label")} position="insideLeft" angle={-90} />
+        </YAxis>
         <Tooltip />
         <Legend verticalAlign="top" />
         <Bar dataKey="valueMale" fill="var(--color-graph-blue)" name={t("legend-man")} />

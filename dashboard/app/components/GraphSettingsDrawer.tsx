@@ -69,13 +69,16 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
           />
         </main>
         <footer className="text-center mb-5">
-          {t("footer-text")} <a
-            className="link link-secondary"
-            href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710027901"
-            target="_blank"
-          >
-            {t("footer-link-name")}
-          </a>
+          <p className="text-neutral">*{t("footnote")}</p>
+          <span className="text-neutral">
+            {t("footer-text")} <a
+              className="link link-secondary"
+              href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710027901"
+              target="_blank"
+            >
+              {t("footer-link-name")}
+            </a>
+          </span>
         </footer>
       </div>
       <div className="drawer-side shadow-md">

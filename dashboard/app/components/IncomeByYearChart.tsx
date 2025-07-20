@@ -1,6 +1,6 @@
 "use client";
 
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Label, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { FieldOfStudy, getDisplayKeyForField, ValueByYearEntry } from "../data/DataMaps";
 import { useTranslation } from "react-i18next";
 
@@ -19,8 +19,12 @@ const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
         data={data}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="year" />
-        <YAxis />
+        <XAxis dataKey="year" height={50} >
+          <Label value={t("year-axis-label")} position="insideBottom" />
+        </XAxis>
+        <YAxis width={90}>
+          <Label value={t("income-axis-label")} position="insideBottomLeft" offset={15} angle={-90} />
+        </YAxis>
         <Tooltip />
         <Legend verticalAlign="top" />
         <Line name={t("legend-man")} type="monotone" dataKey="valueMale" stroke="var(--color-graph-blue)" />
