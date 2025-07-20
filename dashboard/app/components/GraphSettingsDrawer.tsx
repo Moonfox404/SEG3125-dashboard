@@ -44,7 +44,7 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
       <div className="drawer-content">
         {
           sidebarOpen &&
-          <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0 rounded-none">
+          <label htmlFor="graphSettingsDrawer" className="btn btn-neutral w-5 drawer-button fixed top-0 rounded-none z-2">
             <FontAwesomeIcon icon={faChevronLeft} />
           </label>
         }
@@ -58,7 +58,7 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
             }
           </NavBar>
         </nav>
-        <main>
+        <main className="mt-15">
           <Graphs
             data={data}
             year={year}
@@ -81,12 +81,13 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
           </span>
         </footer>
       </div>
-      <div className="drawer-side shadow-md">
+      <div className="drawer-side shadow-md z-2">
         <label htmlFor="graphSettingsDrawer" aria-label="close sidebar" className="drawer-overlay"></label>
         <GraphSettings
           compareStudyLevel={compareStudyLevel}
           temporalStudyLevel={temporalStudyLevel}
           fieldOfStudy={fieldOfStudy}
+          year={year}
           setYear={setYear}
           setCompareStudyLevel={setCompareStudyLevel}
           setFieldOfStudy={setFieldOfStudy}

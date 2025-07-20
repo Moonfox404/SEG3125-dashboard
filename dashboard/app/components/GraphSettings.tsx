@@ -10,6 +10,7 @@ type GraphSettingsProps = {
   compareStudyLevel: StudyLevel;
   temporalStudyLevel: StudyLevel;
   fieldOfStudy: FieldOfStudy;
+  year: number;
   setCompareStudyLevel: Dispatch<StudyLevel>;
   setTemporalStudyLevel: Dispatch<StudyLevel>;
   setYear: Dispatch<number>;
@@ -20,6 +21,7 @@ const GraphSettings = ({
   compareStudyLevel,
   temporalStudyLevel,
   fieldOfStudy,
+  year,
   setCompareStudyLevel,
   setTemporalStudyLevel,
   setYear,
@@ -35,6 +37,7 @@ const GraphSettings = ({
   const maxYear = Math.max(...years);
 
   const [sync, setSync] = useState(true);
+  const [prevYear, setPrevYear] = useState(year);
 
   useEffect(() => {
     setYear(maxYear);
@@ -53,7 +56,7 @@ const GraphSettings = ({
   }, [i18n.language])
 
   return (
-    <div className="bg-base-100 h-screen w-2xs sm:w-xs px-8">
+    <div className="bg-base-100 h-screen w-2xs sm:w-xs max-sm:min-h-fit px-8">
       <div className="h-[15vh] flex items-center">
         <Logo />
       </div>
@@ -97,10 +100,19 @@ const GraphSettings = ({
               step={1}
               min={minYear}
               max={maxYear}
-              defaultValue={maxYear}
+              value={year}
               required
-              onKeyDown={(evt) => { evt.preventDefault(); }}
-              onChange={(evt) => { setYear(Number(evt.target.value)); }}
+              onChange={(evt) => {
+                if (minYear <= Number(evt.target.value) && Number(evt.target.value) <= maxYear) {
+                  setPrevYear(Number(evt.target.value));
+                }
+                setYear(Number(evt.target.value));
+              }}
+              onBlur={(evt) => {
+                if (minYear > year || year > maxYear) {
+                  setYear(prevYear);
+                }
+              }}
             />
           </fieldset>
         </div>

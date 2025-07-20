@@ -17,7 +17,7 @@ const NavBar = ({ children, showLogo }: NavBarProps) => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="navbar bg-base-100 shadow-md fixed top-0 right-0 z-1">
       <div className="flex navbar-start">
         {children}
         <div className="hidden sm:block">

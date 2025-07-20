@@ -12,7 +12,7 @@ type LineChartProps = {
 const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
   const [t, i18n] = useTranslation();
 
-  return <div className="card bg-base-100 w-full h-[35vh] p-5 shadow-md">
+  return <div className="card bg-base-100 w-full h-[45vh] sm:h-[35vh] p-5 shadow-md">
     <h2 className="text-2xl text-center w-full">{t("income-by-year-graph-title")} ({t(getDisplayKeyForField(fieldOfStudy))})</h2>
     <ResponsiveContainer>
       <LineChart
