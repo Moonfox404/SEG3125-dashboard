@@ -28,7 +28,7 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
     })
   })
 
-  return <div className="card bg-base-100 w-full h-[55vh] p-5 shadow-md">
+  return <div className="card bg-base-100 w-full h-[70vh] sm:h-[55vh] p-5 shadow-md">
     <h2 className="text-2xl text-center w-full my-2">{t("income-by-study-graph-title")} ({year})</h2>
     <ResponsiveContainer>
       <BarChart
