@@ -87,6 +87,7 @@ const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
           compareStudyLevel={compareStudyLevel}
           temporalStudyLevel={temporalStudyLevel}
           fieldOfStudy={fieldOfStudy}
+          year={year}
           setYear={setYear}
           setCompareStudyLevel={setCompareStudyLevel}
           setFieldOfStudy={setFieldOfStudy}
