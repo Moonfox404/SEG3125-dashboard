@@ -11,6 +11,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    supportedLngs: ["en", "fr"],
+
     resources: {
       en: en,
       fr: fr

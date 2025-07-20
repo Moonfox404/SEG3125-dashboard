@@ -15,9 +15,9 @@ export type ValueByYearEntry = {
   year: number,
 };
 
-export type StudyLevel = "Career, technical or professional training diploma" 
-  | "Undergraduate degree" 
-  | "Master's degree" 
+export type StudyLevel = "Career, technical or professional training diploma"
+  | "Undergraduate degree"
+  | "Master's degree"
   | "Doctoral degree"
   | "Diplôme de formation technique ou professionnelle"
   | "Grade de premier cycle"
@@ -325,7 +325,7 @@ const getYears = () => {
 
 const getFieldOfStudies = (lang: LangKey) => {
   // hard coding for now
-  return [...(lang === "en" ? FrenchToEnglish.values() : FrenchToEnglish.keys())].sort(
+  return [...(lang === "fr" ? FrenchToEnglish.keys() : FrenchToEnglish.values())].sort(
     compareFieldOfStudies
   );
 }
@@ -339,10 +339,10 @@ const getDisplayKeyForField: (fieldOfStudy: FieldOfStudy) => string = (fieldOfSt
 }
 
 const getStudyLevels: (lang: LangKey) => StudyLevel[] = (lang) => {
-  return lang === "en" ? 
-    ["Career, technical or professional training diploma", "Undergraduate degree", "Master's degree", "Doctoral degree"]
-    :
+  return lang === "fr" ?
     ["Diplôme de formation technique ou professionnelle", "Grade de premier cycle", "Maîtrise (Grade de deuxième cycle)", "Doctorat (Grade de troisième cycle)"]
+    :
+    ["Career, technical or professional training diploma", "Undergraduate degree", "Master's degree", "Doctoral degree"];
 }
 
 const getDisplayIconForField: (fieldOfStudy: FieldOfStudy) => IconDefinition = (fieldOfStudy) => {
