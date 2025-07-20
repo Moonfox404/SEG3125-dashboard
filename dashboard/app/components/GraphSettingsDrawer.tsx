@@ -18,15 +18,15 @@ type GraphSettingsDrawerType = {
 
 const GraphSettingsDrawer = ({ dataEN, dataFR }: GraphSettingsDrawerType) => {
   const [t, i18n] = useTranslation();
-  const data = i18n.language === "en" ? dataEN : dataFR;
+  const data = i18n.language === "fr" ? dataFR : dataEN;
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // menu states
-  const [compareStudyLevel, setCompareStudyLevel] = useState<StudyLevel>(i18n.language === "en" ? "Grade de premier cycle" : "Undergraduate degree");
+  const [compareStudyLevel, setCompareStudyLevel] = useState<StudyLevel>(i18n.language === "fr" ? "Undergraduate degree" : "Grade de premier cycle");
   const [temporalStudyLevel, setTemporalStudyLevel] = useState<StudyLevel>(compareStudyLevel);
   const [year, setYear] = useState(2018);
-  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "en" ? "Total, domaine d'études" : "Total, field of study");
+  const [fieldOfStudy, setFieldOfStudy] = useState<FieldOfStudy>(i18n.language === "fr" ? "Total, field of study" : "Total, domaine d'études");
 
   return (
     <div className={"drawer" + (sidebarOpen ? " lg:drawer-open" : "")}>
