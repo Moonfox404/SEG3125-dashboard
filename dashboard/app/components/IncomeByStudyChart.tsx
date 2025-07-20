@@ -35,7 +35,6 @@ const IncomeByStudyChart = ({ data, year }: BarChartProps) => {
         layout={vertical ? "vertical" : "horizontal"}
         data={data}
       >
-        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey={vertical ? undefined : "fieldOfStudy"}
           tick={vertical ? undefined : IconAxisTick}

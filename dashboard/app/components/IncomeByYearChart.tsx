@@ -18,7 +18,7 @@ const IncomeByYearChart = ({ data, fieldOfStudy }: LineChartProps) => {
       <LineChart
         data={data}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="year" height={50} >
           <Label value={t("year-axis-label")} position="insideBottom" />
         </XAxis>
